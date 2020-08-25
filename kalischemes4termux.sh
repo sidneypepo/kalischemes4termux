@@ -57,8 +57,8 @@ reset()
 
 }
 
-#Kali Dark scheme function:
-kali.dark()
+#Kali Dark 2020.3 scheme function:
+kali.dark.2020.3()
 {
 
 	clear
@@ -256,7 +256,7 @@ option()
 	read -p ">>> " schm
 
 	case $schm in
-		1|01) kali.dark;;
+		1|01) kali.dark.2020.3;;
 		99) reset;;
 		0|00) echo -e "\n    \e[1;33m[*] Exiting in 3 seconds...\e[0m"; sleep 3; clear; exit;;
 		*) echo -e "\e[1;31m'$schm' is an invalid option!\e[0m"; option;;
@@ -274,7 +274,7 @@ menu()
 
 	#Main menu:
 	echo -e "\e[1;32m·Select one option of schemes below: \e[0m\n"
-	echo -e "    \e[1;34m[01] Kali Dark\e[0m\n"
+	echo -e "    \e[1;34m[01] Kali Dark 2020.3\e[0m\n"
 
 	echo -e "    \e[1;34m[99] Reset Termux scheme[0m\n"
 	echo -e "    \e[1;34m[00] Exit script\e[0m\n"
