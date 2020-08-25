@@ -46,7 +46,8 @@ reset()
 	rm -rf "$HOME/../usr/etc/bash.bashrc"
 	cp .termux/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
 	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
-	termux-reload-settings
+	termux-reload-setting
+	sleep 1
 
 	#Executing banner function:
 	banner
@@ -276,7 +277,7 @@ menu()
 	echo -e "\e[1;32m·Select one option of schemes below: \e[0m\n"
 	echo -e "    \e[1;34m[01] Kali Dark 2020.3\e[0m\n"
 
-	echo -e "    \e[1;34m[99] Reset Termux scheme[0m\n"
+	echo -e "    \e[1;34m[99] Reset Termux scheme\e[0m"
 	echo -e "    \e[1;34m[00] Exit script\e[0m\n"
 
 	#Executing option function:
