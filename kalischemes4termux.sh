@@ -32,6 +32,30 @@ banner()
 
 }
 
+#Reset Termux scheme function:
+reset()
+{
+
+	#Executing banner function:
+	banner
+
+	sleep 1
+
+	echo -e "    \e[1;33m[*] Reseting Termux scheme...\e[0m"
+	rm -rf "$HOME/../usr/bin/colors.properties" "$HOME/../usr/bin/font.ttf"
+	rm -rf "$HOME/../usr/etc/bash.bashrc"
+	cp .termux/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
+	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
+
+	#Executing banner function:
+	banner
+	echo -e "    \e[1;32m[+] Termux scheme successfully reseted.\e[0m\n"
+	sleep 1
+	echo -e "    \e[1;33m[*] Exiting in 3 seconds...\e[0m"
+	sleep 3
+
+}
+
 #Kali Dark scheme function:
 kali.dark()
 {
@@ -40,55 +64,6 @@ kali.dark()
 
 	#Executing banner function:
 	banner
-
-	sleep 1
-
-	#Checking if core is installed
-	cre=.termux/
-	if [ -d "$cre" ]
-	then
-
-		echo -e "    \e[1;32m[+] Core is instaled.\e[0m\n"
-		if [ -d "$HOME/.termux" ]
-                then
-
-                        mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
-
-                fi
-		cp -r ".termux" "$HOME/.termux"
-
-	else
-
-		echo -e "    \e[1;31m[!] Core isn't instaled. Installing it...\e[0m"
-
-                git clone https://github.com/sidneypepo/kalischemes4termux -q
-                mv kalischemes4termux/.termux .termux
-		rm -rf kalischemes4termux/
-		cp -r ".termux" "$HOME/.termux"
-		sleep 1
-
-		if [ -d "$HOME/.termux" ]
-                then
-
-                	mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
-
-                fi
-
-		if [ -d "$cre" ]
-                then
-
-                        echo -e "    \e[1;32m[+] Core instaled.\e[0m\n"
-
-                else
-
-                        echo -e "    \e[1;31m[!] Core can't be instaled. Exiting...\e[0m"
-                        sleep 3
-                        clear
-                        exit
-
-                fi
-
-	fi
 
 	sleep 1
 
@@ -281,6 +256,7 @@ option()
 
 	case $schm in
 		1|01) kali.dark;;
+		99) reset;;
 		0|00) echo -e "\n    \e[1;33m[*] Exiting in 3 seconds...\e[0m"; sleep 3; clear; exit;;
 		*) echo -e "\e[1;31m'$schm' is an invalid option!\e[0m"; option;;
 
@@ -296,10 +272,11 @@ menu()
 	banner
 
 	#Main menu:
-	echo -e "·Select one option of schemes below: "
-	echo -e "    [01] Kali Dark\e[0m\n"
+	echo -e "\e[1;32m·Select one option of schemes below: \e[0m\n"
+	echo -e "    \e[1;34m[01] Kali Dark\e[0m\n"
 
-	echo -e "    [00] Exit script\e[0m\n"
+	echo -e "    \e[1;34m[99] Reset Termux scheme[0m\n"
+	echo -e "    \e[1;34m[00] Exit script\e[0m\n"
 
 	#Executing option function:
 	option
@@ -366,6 +343,55 @@ checkup()
 			exit
 
 		fi
+
+	fi
+	
+	sleep 1
+	
+	#Checking if core is installed
+	cre=.termux/
+	if [ -d "$cre" ]
+	then
+
+		echo -e "    \e[1;32m[+] Core is instaled.\e[0m\n"
+		if [ -d "$HOME/.termux" ]
+                then
+
+                        mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
+
+                fi
+		cp -r ".termux" "$HOME/.termux"
+
+	else
+
+		echo -e "    \e[1;31m[!] Core isn't instaled. Installing it...\e[0m"
+
+                git clone https://github.com/sidneypepo/kalischemes4termux -q
+                mv kalischemes4termux/.termux .termux
+		rm -rf kalischemes4termux/
+		cp -r ".termux" "$HOME/.termux"
+		sleep 1
+
+		if [ -d "$HOME/.termux" ]
+                then
+
+                	mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
+
+                fi
+
+		if [ -d "$cre" ]
+                then
+
+                        echo -e "    \e[1;32m[+] Core instaled.\e[0m\n"
+
+                else
+
+                        echo -e "    \e[1;31m[!] Core can't be instaled. Exiting...\e[0m"
+                        sleep 3
+                        clear
+                        exit
+
+                fi
 
 	fi
 
