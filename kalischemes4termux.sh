@@ -53,8 +53,9 @@ reset()
 	banner
 	echo -e "    \e[1;32m[+] Termux scheme successfully reseted.\e[0m\n"
 	sleep 1
-	echo -e "    \e[1;33m[*] Exiting in 3 seconds...\e[0m"
-	sleep 3
+	echo -e "    \e[1;33m[*] Exiting in 5 seconds...\e[0m"
+	sleep 5
+	clear
 
 }
 
