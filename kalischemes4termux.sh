@@ -44,8 +44,8 @@ reset()
 	echo -e "    \e[1;33m[*] Reseting Termux scheme...\e[0m"
 	rm -rf "$HOME/../usr/bin/colors.properties" "$HOME/../usr/bin/font.ttf"
 	rm -rf "$HOME/../usr/etc/bash.bashrc"
-	cp .termux/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
-	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
+	cp .ks4t-core/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
+	rm -rf "$HOME/.ks4t-core" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
 	chsh -s bash
 	termux-reload-settings
 	sleep 1
@@ -194,10 +194,10 @@ kali.dark.2020.3()
 
 	#Applying changes:
 	#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
-	cp -rf .termux/colors/kali.dark.colors "$(dirname $0)/colors.properties"
-	cp -rf .termux/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
+	cp -rf .ks4t-core/colors/kali.dark.2020.3.colors "$(dirname $0)/colors.properties"
+	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
 	mv "$HOME/../usr/etc/bash.bashrc" "$HOME/../usr/etc/bash.bashrc.$(date).bak"
-	cp -rf .termux/bash.bashrc "$HOME/../usr/etc/bash.bashrc"
+	cp -rf .ks4t-core/bash.bashrc "$HOME/../usr/etc/bash.bashrc"
 
 	sleep 1
 
@@ -323,33 +323,33 @@ checkup()
 	sleep 1
 
 	#Checking if core is installed
-	cre=.termux/
+	cre=.ks4t-core/
 	if [ -d "$cre" ]
 	then
 
 		echo -e "    \e[1;32m[+] Core is instaled.\e[0m\n"
-		if [ -d "$HOME/.termux" ]
+		if [ -d "$HOME/.ks4t-core" ]
                 then
 
-                        mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
+                        mv "$HOME/.ks4t-core" "$HOME/.ks4t-core.$(date).bak"
 
                 fi
-		cp -r ".termux" "$HOME/.termux"
+		cp -r ".ks4t-core" "$HOME/.ks4t-core"
 
 	else
 
 		echo -e "    \e[1;31m[!] Core isn't instaled. Installing it...\e[0m"
 
                 git clone https://github.com/sidneypepo/kalischemes4termux -q
-                mv kalischemes4termux/.termux .termux
+                mv kalischemes4termux/.ks4t-core .ks4t-core
 		rm -rf kalischemes4termux/
-		if [ -d "$HOME/.termux" ]
+		if [ -d "$HOME/.ks4t-core" ]
                 then
 
-                	mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
+                	mv "$HOME/.ks4t-core" "$HOME/.ks4t-core.$(date).bak"
 
                 fi
-		cp -r ".termux" "$HOME/.termux"
+		cp -r ".ks4t-core" "$HOME/.ks4t-core"
 		sleep 1
 
 		if [ -d "$cre" ]
