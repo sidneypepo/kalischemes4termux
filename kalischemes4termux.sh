@@ -46,6 +46,7 @@ reset()
 	rm -rf "$HOME/../usr/etc/bash.bashrc"
 	cp .termux/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
 	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
+	chsh -s bash
 	termux-reload-settings
 	sleep 1
 
@@ -231,20 +232,18 @@ kali.dark.2020.3()
 	sleep 1
 
         echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
-
 	if [ -f "$HOME/../usr/etc/motd" ]
 	then
 
 		mv "$HOME/../usr/etc/motd" "$HOME/../usr/etc/motd.$(date).bak"
 
 	fi
-
+	chsh -s bash
 	termux-reload-settings
 
 	sleep 1
 
 	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
-
 	sleep 5
 	#Executing main menu function:
 	menu
