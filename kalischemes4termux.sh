@@ -46,7 +46,7 @@ reset()
 	rm -rf "$HOME/../usr/etc/bash.bashrc"
 	cp .termux/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
 	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
-	termux-reload-setting
+	termux-reload-settings
 	sleep 1
 
 	#Executing banner function:
