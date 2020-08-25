@@ -322,34 +322,6 @@ checkup()
 	fi
 
 	sleep 1
-
-	#Checking if wget is installed:
-	if [ -x "$(command -v wget)" ]
-	then
-
-		echo -e "    \e[1;32m[+] Wget is instaled.\e[0m\n"
-
-	else
-		echo -e "    \e[1;31m[!] Wget isn't instaled. Installing it...\e[0m"
-		apt install -q wget -y
-		sleep 1
-
-		if [ -x "$(command -v wget)" ]
-		then
-
-			echo -e "    \e[1;32m[+] Wget instaled.\e[0m\n"
-
-		else
-
-			echo -e "    \e[1;31m[!] Wget can't be instaled. Run 'apt update -y && apt upgrade -y' before use this script.\n\n    Exiting...\e[0m"
-			sleep 3
-			exit
-
-		fi
-
-	fi
-	
-	sleep 1
 	
 	#Checking if core is installed
 	cre=.termux/
