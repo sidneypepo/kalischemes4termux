@@ -322,7 +322,7 @@ checkup()
 	fi
 
 	sleep 1
-	
+
 	#Checking if core is installed
 	cre=.termux/
 	if [ -d "$cre" ]
@@ -344,15 +344,14 @@ checkup()
                 git clone https://github.com/sidneypepo/kalischemes4termux -q
                 mv kalischemes4termux/.termux .termux
 		rm -rf kalischemes4termux/
-		cp -r ".termux" "$HOME/.termux"
-		sleep 1
-
 		if [ -d "$HOME/.termux" ]
                 then
 
                 	mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
 
                 fi
+		cp -r ".termux" "$HOME/.termux"
+		sleep 1
 
 		if [ -d "$cre" ]
                 then
