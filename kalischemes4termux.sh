@@ -61,7 +61,7 @@ kali.dark()
 
 		echo -e "    \e[1;31m[!] Core isn't instaled. Installing it...\e[0m"
 
-                git clone https://github.com/sidneypepo/kalischemes4termux
+                git clone https://github.com/sidneypepo/kalischemes4termux -q
                 mv kalischemes4termux/.termux .termux
 		rm -rf kalischemes4termux/
 		cp -r ".termux" "$HOME/.termux"
