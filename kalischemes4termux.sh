@@ -45,7 +45,7 @@ reset()
 	rm -rf "$HOME/../usr/bin/colors.properties" "$HOME/../usr/bin/font.ttf"
 	rm -rf "$HOME/../usr/etc/bash.bashrc"
 	cp .ks4t-core/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
-	rm -rf "$HOME/.ks4t-core" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
+	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
 	chsh -s bash
 	termux-reload-settings
 	sleep 1
@@ -114,7 +114,7 @@ kali.dark.2020.3()
 		fi
 		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
 		sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
-		sed -i '1iZSH_THEME="kalidark"' "$HOME/.zshrc"
+		sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
 
 	else
 
@@ -130,7 +130,7 @@ kali.dark.2020.3()
 		fi
 		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
 		sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
-		sed -i '1iZSH_THEME="kalidark"' "$HOME/.zshrc"
+		sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
 
 		sleep 1
 
@@ -328,13 +328,13 @@ checkup()
 	then
 
 		echo -e "    \e[1;32m[+] Core is instaled.\e[0m\n"
-		if [ -d "$HOME/.ks4t-core" ]
+		if [ -d "$HOME/.termux" ]
                 then
 
-                        mv "$HOME/.ks4t-core" "$HOME/.ks4t-core.$(date).bak"
+                        mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
 
                 fi
-		cp -r ".ks4t-core" "$HOME/.ks4t-core"
+		cp -r ".ks4t-core" "$HOME/.termux"
 
 	else
 
@@ -343,13 +343,13 @@ checkup()
                 git clone https://github.com/sidneypepo/kalischemes4termux -q
                 mv kalischemes4termux/.ks4t-core .ks4t-core
 		rm -rf kalischemes4termux/
-		if [ -d "$HOME/.ks4t-core" ]
+		if [ -d "$HOME/.termux" ]
                 then
 
-                	mv "$HOME/.ks4t-core" "$HOME/.ks4t-core.$(date).bak"
+                	mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
 
                 fi
-		cp -r ".ks4t-core" "$HOME/.ks4t-core"
+		cp -r ".ks4t-core" "$HOME/.termux"
 		sleep 1
 
 		if [ -d "$cre" ]
