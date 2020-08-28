@@ -52,8 +52,9 @@ reset()
 	banner
 	echo -e "    \e[1;32m[+] Termux scheme successfully reseted.\e[0m\n"
 	sleep 1
-	echo -e "    \e[1;33m[*] Exiting in 5 seconds...\e[0m"
-	sleep 5
+	echo -e "    \e[1;33m[*] Exiting in 3 seconds...\e[0m"
+	sleep 3
+	clear
 
 }
 
@@ -65,6 +66,15 @@ apply()
 	#Executing banner function:
 	banner
 
+	#Checking if core is in home:
+	if [ -d "$HOME/.termux" ]
+	then
+
+		mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
+
+	fi
+	cp -r ".ks4t-core" "$HOME/.termux"
+	
 	sleep 1
 
 	#Checking if zsh is installed
@@ -354,13 +364,6 @@ checkup()
 	then
 
 		echo -e "    \e[1;32m[+] Core is instaled.\e[0m\n"
-		if [ -d "$HOME/.termux" ]
-                then
-
-                        mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
-
-                fi
-		cp -r ".ks4t-core" "$HOME/.termux"
 
 	else
 
@@ -369,13 +372,6 @@ checkup()
                 git clone https://github.com/sidneypepo/kalischemes4termux -q
                 mv kalischemes4termux/.ks4t-core .ks4t-core
 		rm -rf kalischemes4termux/
-		if [ -d "$HOME/.termux" ]
-                then
-
-                	mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
-
-                fi
-		cp -r ".ks4t-core" "$HOME/.termux"
 		sleep 1
 
 		if [ -d "$cre" ]
