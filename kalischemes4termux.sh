@@ -52,7 +52,7 @@ reset()
 	banner
 	echo -e "    \e[1;32m[+] Termux scheme successfully reseted.\e[0m\n"
 	sleep 1
-	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
+	echo -e "    \e[1;33m[*] Restart your Termux to the changes run properly.\e[0m\n"
 	sleep 5
 	#Executing main menu function:
 	menu
