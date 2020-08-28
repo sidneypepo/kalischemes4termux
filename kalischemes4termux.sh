@@ -43,9 +43,7 @@ reset()
 
 	echo -e "    \e[1;33m[*] Reseting Termux scheme...\e[0m"
 	rm -rf "$HOME/../usr/bin/colors.properties" "$HOME/../usr/bin/font.ttf"
-	rm -rf "$HOME/../usr/etc/bash.bashrc"
-	cp .ks4t-core/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
-	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc"
+	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc" "$HOME/.zsh-syntax-highlighting"
 	chsh -s bash
 	termux-reload-settings
 	sleep 1
@@ -53,15 +51,13 @@ reset()
 	#Executing banner function:
 	banner
 	echo -e "    \e[1;32m[+] Termux scheme successfully reseted.\e[0m\n"
-	sleep 1
-	echo -e "    \e[1;33m[*] Exiting in 5 seconds...\e[0m"
 	sleep 5
-	clear
+	#Executing main menu function:
+	menu
 
 }
 
-#Kali Dark 2020.3 scheme function:
-kali.dark.2020.3()
+apply()
 {
 
 	clear
@@ -114,7 +110,6 @@ kali.dark.2020.3()
 		fi
 		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
 		sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
-		sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
 
 	else
 
@@ -130,7 +125,6 @@ kali.dark.2020.3()
 		fi
 		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
 		sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
-		sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
 
 		sleep 1
 
@@ -150,54 +144,64 @@ kali.dark.2020.3()
 
 	fi
 
-#Not working:
-#	sleep 1
-#
-#	#Checking if zsh-syntax-highlighting is instaled:
-#	zshi=.zsh-syntax-highlighting/
-#	if [ -d "$zshi" ]
-#	then
-#
-#		echo -e "    \e[1;32m[+] Zsh-syntax-highlighting is instaled.\e[0m\n"
-#		if [ -d "$HOME/.zsh-syntax-highlighting" ]
-#               then
-#
-#                        mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
-#
-#               fi
-#		cp -r ".zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting"
-#
-#	else
-#
-#		echo -e "    \e[1;31m[!] Zsh-syntax-highlighting isn't instaled. Installing it...\e[0m"
-#		git clone https://github.com/zsh-users/zsh-syntax-highlighting -q
-#		mv zsh-syntax-highlighting/ .zsh-syntax-highlighting/
-#		cp -r .zsh-syntax-highlighting/ "$HOME/.zsh-syntax-highlighting/"
-#		echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$HOME/.zshrc" &> /dev/null
-#		sleep 1
-#
-#		if [ -d "$zshi" ]
-#		then
-#
-#			echo -e "    \e[1;32m[+] Zsh-syntax-highlighting instaled.\e[0m\n"Zsh-syntax-highlighting
-#
-#		else
-#
-#			echo -e "    \e[1;31m[!] Zsh-syntax-highlighting can't be instaled. Exiting...\e[0m"
-#                       sleep 3
-#                       clear
-#                       exit
-#
-#		fi
-#
-#	fi
+	sleep 1
+
+	#Checking if zsh-syntax-highlighting is instaled:
+	zshi=.zsh-syntax-highlighting/
+	if [ -d "$zshi" ]
+	then
+
+		echo -e "    \e[1;32m[+] Zsh-syntax-highlighting is instaled.\e[0m\n"
+		if [ -d "$HOME/.zsh-syntax-highlighting" ]
+		then
+
+                        mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
+			cp -r ".zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting"
+
+		fi
+
+	else
+
+		echo -e "    \e[1;31m[!] Zsh-syntax-highlighting isn't instaled. Installing it...\e[0m"
+		git clone https://github.com/zsh-users/zsh-syntax-highlighting -q
+		mv zsh-syntax-highlighting/ .zsh-syntax-highlighting/
+		cp -r .zsh-syntax-highlighting/ "$HOME/.zsh-syntax-highlighting/"
+		echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.zshrc
+		sleep 1
+
+		if [ -d "$zshi" ]
+		then
+
+			echo -e "    \e[1;32m[+] Zsh-syntax-highlighting instaled.\e[0m\n"
+
+		else
+
+			echo -e "    \e[1;31m[!] Zsh-syntax-highlighting can't be instaled. Exiting...\e[0m"
+			sleep 3
+			clear
+			exit
+
+		fi
+
+	fi
+
+}
+
+#Kali Dark 2020.3 scheme function:
+kali.dark.2020.3()
+{
+
+	apply
+
+	sleep 1
 
 	#Applying changes:
 	#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
 	cp -rf .ks4t-core/colors/kali.dark.2020.3.colors "$(dirname $0)/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
-	mv "$HOME/../usr/etc/bash.bashrc" "$HOME/../usr/etc/bash.bashrc.$(date).bak"
-	cp -rf .ks4t-core/bash.bashrc "$HOME/../usr/etc/bash.bashrc"
+	
+	cp -rf .ks4t-core/zsh/kali.dark.2020.3.zsh-theme "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
 
 	sleep 1
 
@@ -206,11 +210,11 @@ kali.dark.2020.3()
         if [ "$nick" != "" ]
 	then
 
-		sed -i "s/nick/$nick/" "$HOME/../usr/etc/bash.bashrc"
+		sed -i "s/nick/$nick/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
 
 	else
 
-		sed -i "s/nick/kali/" "$HOME/../usr/etc/bash.bashrc"
+		sed -i "s/nick/kali/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
 
 	fi
 
@@ -221,11 +225,11 @@ kali.dark.2020.3()
 	if [ "$host" != "" ]
         then
 
-		sed -i "s/host/$host/" "$HOME/../usr/etc/bash.bashrc"
+		sed -i "s/host/$host/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
 
         else
 
-		sed -i "s/host/kali/" "$HOME/../usr/etc/bash.bashrc"
+		sed -i "s/host/kali/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
 
         fi
 
@@ -238,7 +242,7 @@ kali.dark.2020.3()
 		mv "$HOME/../usr/etc/motd" "$HOME/../usr/etc/motd.$(date).bak"
 
 	fi
-	chsh -s bash
+	chsh -s zsh
 	termux-reload-settings
 
 	sleep 1
