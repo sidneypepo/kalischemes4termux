@@ -52,16 +52,15 @@ reset()
 	banner
 	echo -e "    \e[1;32m[+] Termux scheme successfully reseted.\e[0m\n"
 	sleep 1
-	echo -e "    \e[1;33m[*] Exiting in 3 seconds...\e[0m"
-	sleep 3
-	clear
+	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
+	sleep 5
+	#Executing main menu function:
+	menu
 
 }
 
 apply()
 {
-
-	clear
 
 	#Executing banner function:
 	banner
