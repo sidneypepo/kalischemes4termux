@@ -131,6 +131,13 @@ apply()
 			mv "$HOME/.zshrc" "$HOME/.zshrc.$(date).bak"
 
 		fi
+		if [ -d "$HOME/.oh-my-zsh" ]
+                then
+
+                        mv "$HOME/.oh-my-zsh" "$HOME/.oh-my-zsh.$(date).bak"
+
+                fi
+		cp -r ".oh-my-zsh" "$HOME/.oh-my-zsh"
 		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
 		sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
 
