@@ -201,7 +201,7 @@ kali.dark.2020.3()
 	cp -rf .ks4t-core/colors/kali.dark.2020.3.colors "$(dirname $0)/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
 	
-	cp -rf .ks4t-core/zsh/kali.dark.2020.3.zsh-theme "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
+	cp .ks4t-core/zsh/kali.dark.2020.3.zsh-theme "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
 
 	sleep 1
 
