@@ -180,7 +180,7 @@ apply()
 		echo -e "    \e[1;31m[!] Zsh-syntax-highlighting isn't instaled. Installing it...\e[0m"
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting -q
 		mv zsh-syntax-highlighting/ .zsh-syntax-highlighting/
-		if [ -d "$HOME/..zsh-syntax-highlighting" ]
+		if [ -d "$HOME/.zsh-syntax-highlighting" ]
                 then
 
                         mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
