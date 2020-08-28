@@ -174,6 +174,7 @@ apply()
 
 		fi
 		cp -r ".zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting"
+		echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.zshrc
 
 	else
 
