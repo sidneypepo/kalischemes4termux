@@ -171,15 +171,21 @@ apply()
 		then
 
                         mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
-			cp -r ".zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting"
 
 		fi
+		cp -r ".zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting"
 
 	else
 
 		echo -e "    \e[1;31m[!] Zsh-syntax-highlighting isn't instaled. Installing it...\e[0m"
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting -q
 		mv zsh-syntax-highlighting/ .zsh-syntax-highlighting/
+		if [ -d "$HOME/..zsh-syntax-highlighting" ]
+                then
+
+                        mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
+
+                fi
 		cp -r .zsh-syntax-highlighting/ "$HOME/.zsh-syntax-highlighting/"
 		echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.zshrc
 		sleep 1
