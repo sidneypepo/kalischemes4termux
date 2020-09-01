@@ -4,4 +4,4 @@ if [ -x /data/data/com.termux/files/usr/libexec/termux/command-not-found ]; then
         }
 fi
 
-PS1="\[\033[1;31m\]nick@host\[\e[0m\]:[\033[1;34m\]\w\[\e[0m\]$ "
+PS1="\[\033[1;31m\]nick@host\[\e[0m\]:[\033[1;34m\]\w\[\e[0m\]\$ "
