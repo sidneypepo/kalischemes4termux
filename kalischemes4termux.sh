@@ -43,7 +43,8 @@ reset()
 
 	echo -e "    \e[1;33m[*] Reseting Termux scheme...\e[0m"
 	rm -rf "$HOME/../usr/bin/colors.properties" "$HOME/../usr/bin/font.ttf"
-	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc" "$HOME/.zsh-syntax-highlighting"
+	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc" "$HOME/.zsh-syntax-highlighting" "$HOME/../usr/etc/bash.bashrc"
+	cp .ks4t-core/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
 	chsh -s bash
 	termux-reload-settings
 	sleep 1
@@ -335,6 +336,142 @@ kali.dark.2020.4()
 
 }
 
+#Kali Dark 2020.3 scheme function:
+kali.dark.2020.3()
+{
+
+	apply
+
+	sleep 1
+
+	#Applying changes:
+	#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
+	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
+	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
+
+	mv "$HOME/../usr/etc/bash.bashrc" "$HOME/../usr/etc/bash.bashrc.$(date).bak"
+	cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/../usr/etc/bash.bashrc"
+
+	sleep 1
+
+        echo -e "    \e[1;32m[+] Type your username. (If you leave it blank, it will be 'kali').\e[0m"
+        read -p ">>> " nick
+        if [ "$nick" != "" ]
+	then
+
+		sed -i "s/nick/$nick/" "$HOME/../usr/etc/bash.bashrc"
+
+	else
+
+		sed -i "s/nick/kali/" "$HOME/../usr/etc/bash.bashrc"
+
+	fi
+
+	sleep 1
+
+        echo -e "\n    \e[1;32m[+] Type your host. (If you leave it blank, it will be 'kali').\e[0m"
+        read -p ">>> " host
+	if [ "$host" != "" ]
+        then
+
+		sed -i "s/host/$host/" "$HOME/../usr/etc/bash.bashrc"
+
+        else
+
+		sed -i "s/host/kali/" "$HOME/../usr/etc/bash.bashrc"
+
+        fi
+
+	sleep 1
+
+        echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
+	if [ -f "$HOME/../usr/etc/motd" ]
+	then
+
+		mv "$HOME/../usr/etc/motd" "$HOME/../usr/etc/motd.$(date).bak"
+
+	fi
+	chsh -s bash
+	termux-reload-settings
+
+	sleep 1
+
+	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
+	sleep 5
+	#Executing main menu function:
+	menu
+
+}
+
+#Kali Dark 2019.4 scheme function:
+kali.dark.2019.4()
+{
+
+	apply
+
+	sleep 1
+
+	#Applying changes:
+	#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
+	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
+	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
+
+	mv "$HOME/../usr/etc/bash.bashrc" "$HOME/../usr/etc/bash.bashrc.$(date).bak"
+	cp .ks4t-core/bash/kali.dark.2019.4.bashrc "$HOME/../usr/etc/bash.bashrc"
+
+	sleep 1
+
+        echo -e "    \e[1;32m[+] Type your username. (If you leave it blank, it will be 'kali').\e[0m"
+        read -p ">>> " nick
+        if [ "$nick" != "" ]
+	then
+
+		sed -i "s/nick/$nick/" "$HOME/../usr/etc/bash.bashrc"
+
+	else
+
+		sed -i "s/nick/kali/" "$HOME/../usr/etc/bash.bashrc"
+
+	fi
+
+	sleep 1
+
+        echo -e "\n    \e[1;32m[+] Type your host. (If you leave it blank, it will be 'kali').\e[0m"
+        read -p ">>> " host
+	if [ "$host" != "" ]
+        then
+
+		sed -i "s/host/$host/" "$HOME/../usr/etc/bash.bashrc"
+
+        else
+
+		sed -i "s/host/kali/" "$HOME/../usr/etc/bash.bashrc"
+
+        fi
+
+	sleep 1
+
+        echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
+	if [ -f "$HOME/../usr/etc/motd" ]
+	then
+
+		mv "$HOME/../usr/etc/motd" "$HOME/../usr/etc/motd.$(date).bak"
+
+	fi
+	chsh -s bash
+	termux-reload-settings
+
+	sleep 1
+
+	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
+	sleep 5
+	#Executing main menu function:
+	menu
+
+}
+
 #Option select function:
 option()
 {
@@ -343,6 +480,8 @@ option()
 
 	case $schm in
 		1|01) kali.dark.2020.4;;
+		2|02) kali.dark.2020.3;;
+		3|03) kali.dark.2019.4;;
 		99) reset;;
 		0|00) echo -e "\n    \e[1;33m[*] Exiting in 3 seconds...\e[0m"; sleep 3; clear; exit;;
 		*) echo -e "\e[1;31m'$schm' is an invalid option!\e[0m"; option;;
@@ -361,6 +500,8 @@ menu()
 	#Main menu:
 	echo -e "\e[1;32m·Select one option of schemes below: \e[0m\n"
 	echo -e "    \e[1;34m[01] Kali Dark 2020.4\e[0m\n"
+	echo -e "    \e[1;34m[02] Kali Dark 2020.3\e[0m\n"
+	echo -e "    \e[1;34m[03] Kali Dark 2019.4\e[0m\n"
 
 	echo -e "    \e[1;34m[99] Reset Termux scheme\e[0m"
 	echo -e "    \e[1;34m[00] Exit script\e[0m\n"
