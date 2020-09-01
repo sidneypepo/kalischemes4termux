@@ -224,13 +224,13 @@ apply()
 	then
 
 		echo -e "    \e[1;32m[+] Zsh-autosuggestions is instaled.\e[0m\n"
-		if [ -d "$HOME/.oh-my-zsh/custom/plugins/.zsh-autosuggestions" ]
+		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
 		then
 
-                        mv "$HOME/.oh-my-zsh/custom/plugins/.zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/.zsh-autosuggestions.$(date).bak"
+                        mv "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
 
 		fi
-		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/.zsh-autosuggestions"
+		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 		echo "plugins=(zsh-autosuggestions)" >> $HOME/.zshrc
 		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.zshrc
 
@@ -239,13 +239,13 @@ apply()
 		echo -e "    \e[1;31m[!] Zsh-autosuggestions isn't instaled. Installing it...\e[0m"
 		git clone https://github.com/zsh-users/zsh-autosuggestions -q
 		mv zsh-autosuggestions/ .zsh-autosuggestions/
-		if [ -d "$HOME/.oh-my-zsh/custom/plugins/.zsh-autosuggestions" ]
+		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
                 then
 
-                        mv "$HOME/.oh-my-zsh/custom/plugins/.zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/.zsh-autosuggestions.$(date).bak"
+                        mv "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
 
                 fi
-		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/.zsh-autosuggestions"
+		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 		echo "plugins=(zsh-autosuggestions)" >> $HOME/.zshrc
 		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.zshrc
 		sleep 1
