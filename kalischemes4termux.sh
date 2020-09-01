@@ -231,7 +231,7 @@ apply()
 
 		fi
 		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-		echo "plugins=(zsh-autosuggestions)" >> $HOME/.zshrc
+		sed '/(git)/ a plugins=(zsh-autosuggestions)' $HOME/.zshrc
 		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.zshrc
 
 	else
@@ -246,7 +246,7 @@ apply()
 
                 fi
 		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-		echo "plugins=(zsh-autosuggestions)" >> $HOME/.zshrc
+		sed '/(git)/ a plugins=(zsh-autosuggestions)' $HOME/.zshrc
 		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.zshrc
 		sleep 1
 
