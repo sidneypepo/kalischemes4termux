@@ -499,11 +499,11 @@ menu()
 
 	#Main menu:
 	echo -e "\e[1;32m·Select one option of schemes below: \e[0m\n"
-	echo -e "    \e[1;34m[01] Kali Dark 2020.4\e[0m\n"
-	echo -e "    \e[1;34m[02] Kali Dark 2020.3\e[0m\n"
-	echo -e "    \e[1;34m[03] Kali Dark 2019.4\e[0m\n"
+	echo -e "    \e[1;34m[01] Kali Dark 2020.4\e[0m"
+	echo -e "    \e[1;34m[02] Kali Dark 2020.3\e[0m"
+	echo -e "    \e[1;34m[03] Kali Dark 2019.4\e[0m"
 
-	echo -e "    \e[1;34m[99] Reset Termux scheme\e[0m"
+	echo -e "\n    \e[1;34m[99] Reset Termux scheme\e[0m"
 	echo -e "    \e[1;34m[00] Exit script\e[0m\n"
 
 	#Executing option function:
