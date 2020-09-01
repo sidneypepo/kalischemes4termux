@@ -215,11 +215,61 @@ apply()
 		fi
 
 	fi
+	
+	sleep 1
+	
+	#Checking if zsh-autosuggestions is instaled:
+	zsha=.zsh-autosuggestions/
+	if [ -d "$zsha" ]
+	then
+
+		echo -e "    \e[1;32m[+] Zsh-autosuggestions is instaled.\e[0m\n"
+		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
+		then
+
+                        mv "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
+
+		fi
+		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+		sed -i 's/git/zsh-autosuggestions/' $HOME/.zshrc
+		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.zshrc
+
+	else
+
+		echo -e "    \e[1;31m[!] Zsh-autosuggestions isn't instaled. Installing it...\e[0m"
+		git clone https://github.com/zsh-users/zsh-autosuggestions -q
+		mv zsh-autosuggestions/ .zsh-autosuggestions/
+		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
+                then
+
+                        mv "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
+
+                fi
+		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+		sed -i 's/git/zsh-autosuggestions/' $HOME/.zshrc
+		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.zshrc
+		sleep 1
+
+		if [ -d "$zsha" ]
+		then
+
+			echo -e "    \e[1;32m[+] Zsh-autosuggestions instaled.\e[0m\n"
+
+		else
+
+			echo -e "    \e[1;31m[!] Zsh-autosuggestions can't be instaled. Exiting...\e[0m"
+			sleep 3
+			clear
+			exit
+
+		fi
+
+	fi
 
 }
 
-#Kali Dark 2020.3 scheme function:
-kali.dark.2020.3()
+#Kali Dark 2020.4 scheme function:
+kali.dark.2020.4()
 {
 
 	apply
@@ -228,11 +278,11 @@ kali.dark.2020.3()
 
 	#Applying changes:
 	#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
-	sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
-	cp -rf .ks4t-core/colors/kali.dark.2020.3.colors "$(dirname $0)/colors.properties"
+	sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.zshrc"
+	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
 	
-	cp .ks4t-core/zsh/kali.dark.2020.3.zsh-theme "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
+	cp .ks4t-core/zsh/kali.dark.2020.4.zsh-theme "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
 	sleep 1
 
@@ -241,11 +291,11 @@ kali.dark.2020.3()
         if [ "$nick" != "" ]
 	then
 
-		sed -i "s/nick/$nick/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
+		sed -i "s/nick/$nick/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
 	else
 
-		sed -i "s/nick/kali/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
+		sed -i "s/nick/kali/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
 	fi
 
@@ -256,11 +306,11 @@ kali.dark.2020.3()
 	if [ "$host" != "" ]
         then
 
-		sed -i "s/host/$host/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
+		sed -i "s/host/$host/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
         else
 
-		sed -i "s/host/kali/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.3.zsh-theme"
+		sed -i "s/host/kali/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
         fi
 
@@ -292,7 +342,7 @@ option()
 	read -p ">>> " schm
 
 	case $schm in
-		1|01) kali.dark.2020.3;;
+		1|01) kali.dark.2020.4;;
 		99) reset;;
 		0|00) echo -e "\n    \e[1;33m[*] Exiting in 3 seconds...\e[0m"; sleep 3; clear; exit;;
 		*) echo -e "\e[1;31m'$schm' is an invalid option!\e[0m"; option;;
@@ -310,7 +360,7 @@ menu()
 
 	#Main menu:
 	echo -e "\e[1;32m·Select one option of schemes below: \e[0m\n"
-	echo -e "    \e[1;34m[01] Kali Dark 2020.3\e[0m\n"
+	echo -e "    \e[1;34m[01] Kali Dark 2020.4\e[0m\n"
 
 	echo -e "    \e[1;34m[99] Reset Termux scheme\e[0m"
 	echo -e "    \e[1;34m[00] Exit script\e[0m\n"
