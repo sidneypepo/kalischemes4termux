@@ -287,7 +287,7 @@ kali.dark.2020.4()
 
 	sleep 1
 
-        echo -e "    \e[1;32m[+] Type your username. (If you leave it blank, it will be 'kali').\e[0m"
+        echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be 'kali').\nE.g. sysb1n, pepo, sidney, etc.\e[0m"
         read -p ">>> " nick
         if [ "$nick" != "" ]
 	then
@@ -302,7 +302,7 @@ kali.dark.2020.4()
 
 	sleep 1
 
-        echo -e "\n    \e[1;32m[+] Type your host. (If you leave it blank, it will be 'kali').\e[0m"
+        echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'kali').\nE.g. redmi-6-pro, android, termux, etc.\e[0m"
         read -p ">>> " host
 	if [ "$host" != "" ]
         then
@@ -355,7 +355,7 @@ kali.dark.2020.3()
 
 	sleep 1
 
-        echo -e "    \e[1;32m[+] Type your username. (If you leave it blank, it will be 'kali').\e[0m"
+        echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be 'kali').\nE.g. sysb1n, pepo, sidney, etc.\e[0m"
         read -p ">>> " nick
         if [ "$nick" != "" ]
 	then
@@ -370,7 +370,7 @@ kali.dark.2020.3()
 
 	sleep 1
 
-        echo -e "\n    \e[1;32m[+] Type your host. (If you leave it blank, it will be 'kali').\e[0m"
+        echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'kali').\nE.g. redmi-6-pro, android, termux, etc.\e[0m"
         read -p ">>> " host
 	if [ "$host" != "" ]
         then
@@ -423,7 +423,7 @@ kali.dark.2019.4()
 
 	sleep 1
 
-        echo -e "    \e[1;32m[+] Type your username. (If you leave it blank, it will be 'kali').\e[0m"
+        echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be 'kali').\nE.g. sysb1n, pepo, sidney, etc.\e[0m"
         read -p ">>> " nick
         if [ "$nick" != "" ]
 	then
@@ -438,7 +438,7 @@ kali.dark.2019.4()
 
 	sleep 1
 
-        echo -e "\n    \e[1;32m[+] Type your host. (If you leave it blank, it will be 'kali').\e[0m"
+        echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'kali').\nE.g. redmi-6-pro, android, termux, etc.\e[0m"
         read -p ">>> " host
 	if [ "$host" != "" ]
         then
