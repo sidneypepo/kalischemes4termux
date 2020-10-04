@@ -81,21 +81,21 @@ apply()
 	if [ -x "$(command -v zsh)" ]
 	then
 
-		echo -e "    \e[1;32m[+] Zsh is instaled.\e[0m\n"
+		echo -e "    \e[1;32m[+] Zsh is installed.\e[0m\n"
 
 	else
-		echo -e "    \e[1;31m[!] Zsh isn't instaled. Installing it...\e[0m"
+		echo -e "    \e[1;31m[!] Zsh isn't installed. Installing it...\e[0m"
 		apt install -q zsh -y
 		sleep 1
 
 		if [ -x "$(command -v zsh)" ]
 		then
 
-			echo -e "    \e[1;32m[+] Zsh instaled.\e[0m\n"
+			echo -e "    \e[1;32m[+] Zsh installed.\e[0m\n"
 
 		else
 
-			echo -e "    \e[1;31m[!] Zsh can't be instaled. Run 'apt update -y && apt upgrade -y' before use this script.\n\n    Exiting...\e[0m"
+			echo -e "    \e[1;31m[!] Zsh can't be installed. Run 'apt update -y && apt upgrade -y' before use this script.\n\n    Exiting...\e[0m"
 			sleep 3
 			exit
 		fi
@@ -109,7 +109,7 @@ apply()
 	if [ -d "$omz" ]
 	then
 
-		echo -e "    \e[1;32m[+] Oh-my-zsh is instaled.\e[0m\n"
+		echo -e "    \e[1;32m[+] Oh-my-zsh is installed.\e[0m\n"
 
 		#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh:
 		if [ -f "$HOME/.zshrc" ]
@@ -131,7 +131,7 @@ apply()
 
 	else
 
-		echo -e "    \e[1;31m[!] Oh-my-zsh isn't instaled. Installing it...\e[0m"
+		echo -e "    \e[1;31m[!] Oh-my-zsh isn't installed. Installing it...\e[0m"
 		#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh:
 		git clone https://github.com/robbyrussell/oh-my-zsh -q
 		mv oh-my-zsh/ .oh-my-zsh/
@@ -156,11 +156,11 @@ apply()
 		if [ -d "$omz" ]
 		then
 
-			echo -e "    \e[1;32m[+] Oh-my-zsh instaled.\e[0m\n"
+			echo -e "    \e[1;32m[+] Oh-my-zsh installed.\e[0m\n"
 
 		else
 
-			echo -e "    \e[1;31m[!] Oh-my-zsh can't be instaled. Exiting...\e[0m"
+			echo -e "    \e[1;31m[!] Oh-my-zsh can't be installed. Exiting...\e[0m"
 			sleep 3
 			clear
 			exit
@@ -171,12 +171,12 @@ apply()
 
 	sleep 1
 
-	#Checking if zsh-syntax-highlighting is instaled:
+	#Checking if zsh-syntax-highlighting is installed:
 	zshi=.zsh-syntax-highlighting/
 	if [ -d "$zshi" ]
 	then
 
-		echo -e "    \e[1;32m[+] Zsh-syntax-highlighting is instaled.\e[0m\n"
+		echo -e "    \e[1;32m[+] Zsh-syntax-highlighting is installed.\e[0m\n"
 		if [ -d "$HOME/.zsh-syntax-highlighting" ]
 		then
 
@@ -188,7 +188,7 @@ apply()
 
 	else
 
-		echo -e "    \e[1;31m[!] Zsh-syntax-highlighting isn't instaled. Installing it...\e[0m"
+		echo -e "    \e[1;31m[!] Zsh-syntax-highlighting isn't installed. Installing it...\e[0m"
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting -q
 		mv zsh-syntax-highlighting/ .zsh-syntax-highlighting/
 		if [ -d "$HOME/.zsh-syntax-highlighting" ]
@@ -204,11 +204,11 @@ apply()
 		if [ -d "$zshi" ]
 		then
 
-			echo -e "    \e[1;32m[+] Zsh-syntax-highlighting instaled.\e[0m\n"
+			echo -e "    \e[1;32m[+] Zsh-syntax-highlighting installed.\e[0m\n"
 
 		else
 
-			echo -e "    \e[1;31m[!] Zsh-syntax-highlighting can't be instaled. Exiting...\e[0m"
+			echo -e "    \e[1;31m[!] Zsh-syntax-highlighting can't be installed. Exiting...\e[0m"
 			sleep 3
 			clear
 			exit
@@ -219,12 +219,12 @@ apply()
 	
 	sleep 1
 	
-	#Checking if zsh-autosuggestions is instaled:
+	#Checking if zsh-autosuggestions is installed:
 	zsha=.zsh-autosuggestions/
 	if [ -d "$zsha" ]
 	then
 
-		echo -e "    \e[1;32m[+] Zsh-autosuggestions is instaled.\e[0m\n"
+		echo -e "    \e[1;32m[+] Zsh-autosuggestions is installed.\e[0m\n"
 		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
 		then
 
@@ -237,7 +237,7 @@ apply()
 
 	else
 
-		echo -e "    \e[1;31m[!] Zsh-autosuggestions isn't instaled. Installing it...\e[0m"
+		echo -e "    \e[1;31m[!] Zsh-autosuggestions isn't installed. Installing it...\e[0m"
 		git clone https://github.com/zsh-users/zsh-autosuggestions -q
 		mv zsh-autosuggestions/ .zsh-autosuggestions/
 		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
@@ -254,11 +254,11 @@ apply()
 		if [ -d "$zsha" ]
 		then
 
-			echo -e "    \e[1;32m[+] Zsh-autosuggestions instaled.\e[0m\n"
+			echo -e "    \e[1;32m[+] Zsh-autosuggestions installed.\e[0m\n"
 
 		else
 
-			echo -e "    \e[1;31m[!] Zsh-autosuggestions can't be instaled. Exiting...\e[0m"
+			echo -e "    \e[1;31m[!] Zsh-autosuggestions can't be installed. Exiting...\e[0m"
 			sleep 3
 			clear
 			exit
@@ -524,21 +524,21 @@ checkup()
 	if [ -x "$(command -v git)" ]
 	then
 
-		echo -e "    \e[1;32m[+] Git is instaled.\e[0m\n"
+		echo -e "    \e[1;32m[+] Git is installed.\e[0m\n"
 
 	else
-		echo -e "    \e[1;31m[!] Git isn't instaled. Installing it...\e[0m"
+		echo -e "    \e[1;31m[!] Git isn't installed. Installing it...\e[0m"
 		apt install -q git -y
 		sleep 1
 
 		if [ -x "$(command -v git)" ]
 		then
 
-			echo -e "    \e[1;32m[+] Git instaled.\e[0m\n"
+			echo -e "    \e[1;32m[+] Git installed.\e[0m\n"
 
 		else
 
-			echo -e "    \e[1;31m[!] Git can't be instaled. Run 'apt update -y && apt upgrade -y' before use this script.\n\n    Exiting...\e[0m"
+			echo -e "    \e[1;31m[!] Git can't be installed. Run 'apt update -y && apt upgrade -y' before use this script.\n\n    Exiting...\e[0m"
 			sleep 3
 			exit
 
@@ -553,11 +553,11 @@ checkup()
 	if [ -d "$cre" ]
 	then
 
-		echo -e "    \e[1;32m[+] Core is instaled.\e[0m\n"
+		echo -e "    \e[1;32m[+] Core is installed.\e[0m\n"
 
 	else
 
-		echo -e "    \e[1;31m[!] Core isn't instaled. Installing it...\e[0m"
+		echo -e "    \e[1;31m[!] Core isn't installed. Installing it...\e[0m"
 
                 git clone https://github.com/sidneypepo/kalischemes4termux -q
                 mv kalischemes4termux/.ks4t-core .ks4t-core
@@ -567,11 +567,11 @@ checkup()
 		if [ -d "$cre" ]
                 then
 
-                        echo -e "    \e[1;32m[+] Core instaled.\e[0m\n"
+                        echo -e "    \e[1;32m[+] Core installed.\e[0m\n"
 
                 else
 
-                        echo -e "    \e[1;31m[!] Core can't be instaled. Exiting...\e[0m"
+                        echo -e "    \e[1;31m[!] Core can't be installed. Exiting...\e[0m"
                         sleep 3
                         clear
                         exit
