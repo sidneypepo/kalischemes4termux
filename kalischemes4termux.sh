@@ -594,3 +594,4 @@ clear
 banner
 #Executing main menu function:
 menu
+#End of script :p
