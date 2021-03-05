@@ -388,7 +388,7 @@ kali.dark.2020.3() {
 		sudo sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
 		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
 		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
-		sudo mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		sudo mv "$HOME/.suroot/.bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
 		sudo cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
 		sudo sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
 		if [ "$host" != "" ]; then
@@ -466,7 +466,7 @@ kali.dark.2019.4() {
 		sudo sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
 		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
 		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
-		sudo mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		sudo mv "$HOME/.suroot/.bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
 		sudo cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
 		sudo sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
 		if [ "$host" != "" ]; then
@@ -545,7 +545,7 @@ kali.custom.1.0() {
 		sudo sed -i '1iZSH_THEME="kali.custom.1.0"' "$HOME/.zshrc"
 		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
 		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
-		sudo mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		sudo mv "$HOME/.suroot/.bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
 		sudo cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
 		sudo sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
 		if [ "$host" != "" ]; then
