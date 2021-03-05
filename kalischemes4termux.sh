@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Credits:
+# Credits:
 #  _                              _    __
 # | |                            | |  /  |
 # | | _  _   _     ___ _   _  ___| | /_/ |____
@@ -9,13 +9,11 @@
 # |____/ \__  |  (___/ \__  (___/|____/|_|_| |_|
 #       (____/        (____/
 
-#Banner function:
-banner()
-{
-
+# Banner function:
+banner() {
 	clear
 
-	#Script banner:
+	# Script banner:
 	echo -e " \e[1;34m_     _       _  _    \e[1;35m______       _                            "
 	echo -e "\e[1;34m| |   | |     | |(_)  \e[1;35m/ _____)     | |                           "
 	echo -e "\e[1;34m| |___| |_____| | _  \e[1;35m( (____   ____| |__  _____ ____  _____  ___ "
@@ -32,11 +30,9 @@ banner()
 
 }
 
-#Reset Termux scheme function:
-reset()
-{
-
-	#Executing banner function:
+# Reset Termux scheme function:
+reset() {
+	# Executing banner function:
 	banner
 
 	sleep 1
@@ -49,38 +45,33 @@ reset()
 	termux-reload-settings
 	sleep 1
 
-	#Executing banner function:
+	# Executing banner function:
 	banner
 	echo -e "    \e[1;32m[+] Termux scheme successfully reseted.\e[0m\n"
 	sleep 1
 	echo -e "    \e[1;33m[*] Restart your Termux to the changes run properly.\e[0m\n"
 	sleep 5
-	#Executing main menu function:
+	# Executing main menu function:
 	menu
 
 }
 
-apply()
-{
-
-	#Executing banner function:
+apply() {
+	# Executing banner function:
 	banner
 
-	#Checking if core is in home:
-	if [ -d "$HOME/.termux" ]
-	then
-
+	# Checking if core is in home:
+	if [ -d "$HOME/.termux" ]; then
 		mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
 
 	fi
+
 	cp -r ".ks4t-core" "$HOME/.termux"
 	
 	sleep 1
 
-	#Checking if zsh is installed
-	if [ -x "$(command -v zsh)" ]
-	then
-
+	# Checking if zsh is installed
+	if [ -x "$(command -v zsh)" ]; then
 		echo -e "    \e[1;32m[+] Zsh is installed.\e[0m\n"
 
 	else
@@ -88,42 +79,36 @@ apply()
 		apt install -q zsh -y
 		sleep 1
 
-		if [ -x "$(command -v zsh)" ]
-		then
-
+		if [ -x "$(command -v zsh)" ]; then
 			echo -e "    \e[1;32m[+] Zsh installed.\e[0m\n"
 
 		else
-
 			echo -e "    \e[1;31m[!] Zsh can't be installed. Run 'apt update -y && apt upgrade -y' before use this script.\n\n    Exiting...\e[0m"
 			sleep 3
 			exit
+
 		fi
 
 	fi
 
 	sleep 1
 
-	#Checking if oh-my-zsh is installed:
+	# Checking if oh-my-zsh is installed:
 	omz=.oh-my-zsh/
-	if [ -d "$omz" ]
-	then
-
+	if [ -d "$omz" ]; then
 		echo -e "    \e[1;32m[+] Oh-my-zsh is installed.\e[0m\n"
 
-		#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh:
-		if [ -f "$HOME/.zshrc" ]
-		then
-
+		# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh:
+		if [ -f "$HOME/.zshrc" ]; then
 			mv "$HOME/.zshrc" "$HOME/.zshrc.$(date).bak"
 
 		fi
-		if [ -d "$HOME/.oh-my-zsh" ]
-                then
 
-                        mv "$HOME/.oh-my-zsh" "$HOME/.oh-my-zsh.$(date).bak"
+		if [ -d "$HOME/.oh-my-zsh" ]; then
+			mv "$HOME/.oh-my-zsh" "$HOME/.oh-my-zsh.$(date).bak"
 
-                fi
+		fi
+
 		cp -r ".oh-my-zsh" "$HOME/.oh-my-zsh"
 
 		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
@@ -132,34 +117,29 @@ apply()
 	else
 
 		echo -e "    \e[1;31m[!] Oh-my-zsh isn't installed. Installing it...\e[0m"
-		#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh:
+		# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh:
 		git clone https://github.com/robbyrussell/oh-my-zsh -q
 		mv oh-my-zsh/ .oh-my-zsh/
-		if [ -f "$HOME/.zshrc" ]
-		then
-
+		if [ -f "$HOME/.zshrc" ]; then
 			mv "$HOME/.zshrc" "$HOME/.zshrc.$(date).bak"
 
 		fi
-		if [ -d "$HOME/.oh-my-zsh" ]
-                then
 
-                        mv "$HOME/.oh-my-zsh" "$HOME/.oh-my-zsh.$(date).bak"
+		if [ -d "$HOME/.oh-my-zsh" ]; then
+			mv "$HOME/.oh-my-zsh" "$HOME/.oh-my-zsh.$(date).bak"
 
-                fi
+		fi
+
 		cp -r ".oh-my-zsh" "$HOME/.oh-my-zsh"
 		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
 		sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
 
 		sleep 1
 
-		if [ -d "$omz" ]
-		then
-
+		if [ -d "$omz" ]; then
 			echo -e "    \e[1;32m[+] Oh-my-zsh installed.\e[0m\n"
 
 		else
-
 			echo -e "    \e[1;31m[!] Oh-my-zsh can't be installed. Exiting...\e[0m"
 			sleep 3
 			clear
@@ -171,43 +151,35 @@ apply()
 
 	sleep 1
 
-	#Checking if zsh-syntax-highlighting is installed:
+	# Checking if zsh-syntax-highlighting is installed:
 	zshi=.zsh-syntax-highlighting/
-	if [ -d "$zshi" ]
-	then
-
+	if [ -d "$zshi" ]; then
 		echo -e "    \e[1;32m[+] Zsh-syntax-highlighting is installed.\e[0m\n"
-		if [ -d "$HOME/.zsh-syntax-highlighting" ]
-		then
-
-                        mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
+		if [ -d "$HOME/.zsh-syntax-highlighting" ]; then
+						mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
 
 		fi
+
 		cp -r ".zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting"
 		echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.zshrc
 
 	else
-
 		echo -e "    \e[1;31m[!] Zsh-syntax-highlighting isn't installed. Installing it...\e[0m"
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting -q
 		mv zsh-syntax-highlighting/ .zsh-syntax-highlighting/
-		if [ -d "$HOME/.zsh-syntax-highlighting" ]
-                then
+		if [ -d "$HOME/.zsh-syntax-highlighting" ]; then
+			mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
 
-                        mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
-
-                fi
+		fi
+		
 		cp -r .zsh-syntax-highlighting/ "$HOME/.zsh-syntax-highlighting/"
 		echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.zshrc
 		sleep 1
 
-		if [ -d "$zshi" ]
-		then
-
+		if [ -d "$zshi" ]; then
 			echo -e "    \e[1;32m[+] Zsh-syntax-highlighting installed.\e[0m\n"
 
 		else
-
 			echo -e "    \e[1;31m[!] Zsh-syntax-highlighting can't be installed. Exiting...\e[0m"
 			sleep 3
 			clear
@@ -219,45 +191,37 @@ apply()
 	
 	sleep 1
 	
-	#Checking if zsh-autosuggestions is installed:
+	# Checking if zsh-autosuggestions is installed:
 	zsha=.zsh-autosuggestions/
-	if [ -d "$zsha" ]
-	then
-
+	if [ -d "$zsha" ]; then
 		echo -e "    \e[1;32m[+] Zsh-autosuggestions is installed.\e[0m\n"
-		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
-		then
-
-                        mv "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
+		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+			mv "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
 
 		fi
+
 		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 		sed -i 's/git/zsh-autosuggestions/' $HOME/.zshrc
 		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.zshrc
 
 	else
-
 		echo -e "    \e[1;31m[!] Zsh-autosuggestions isn't installed. Installing it...\e[0m"
 		git clone https://github.com/zsh-users/zsh-autosuggestions -q
 		mv zsh-autosuggestions/ .zsh-autosuggestions/
-		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]
-                then
+		if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+			mv "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
 
-                        mv "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
+		fi
 
-                fi
 		cp -r ".zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 		sed -i 's/git/zsh-autosuggestions/' $HOME/.zshrc
 		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.zshrc
 		sleep 1
 
-		if [ -d "$zsha" ]
-		then
-
+		if [ -d "$zsha" ]; then
 			echo -e "    \e[1;32m[+] Zsh-autosuggestions installed.\e[0m\n"
 
 		else
-
 			echo -e "    \e[1;31m[!] Zsh-autosuggestions can't be installed. Exiting...\e[0m"
 			sleep 3
 			clear
@@ -270,15 +234,13 @@ apply()
 }
 
 #Kali Dark 2020.4 scheme function:
-kali.dark.2020.4()
-{
-
+kali.dark.2020.4() {
 	apply
 
 	sleep 1
 
-	#Applying changes:
-	#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	# Applying changes:
+	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
 	sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.zshrc"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
@@ -287,43 +249,36 @@ kali.dark.2020.4()
 
 	sleep 1
 
-        echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be 'kali').\nE.g. sysb1n, pepo, sidney, etc.\e[0m"
-        read -p ">>> " nick
-        if [ "$nick" != "" ]
-	then
-
-		sed -i "s/nick/$nick/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+	echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be '$(whoami)').\nE.g. sysb1n, pepo, sidney, etc.\e[0m"
+	read -p ">>> " nick
+	if [ "$nick" != "" ]; then
+		sed -i "s/user/$nick/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
 	else
-
-		sed -i "s/nick/kali/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+		sed -i "s/user/$(whoami)/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
 	fi
 
 	sleep 1
 
-        echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'kali').\nE.g. redmi-6-pro, android, termux, etc.\e[0m"
-        read -p ">>> " host
-	if [ "$host" != "" ]
-        then
-
+	echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'localhost').\nE.g. kali, android, redmi-6-pro, etc.\e[0m"
+	read -p ">>> " host
+	if [ "$host" != "" ]; then
 		sed -i "s/host/$host/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
-        else
+	else
+		sed -i "s/host/localhost/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
-		sed -i "s/host/kali/" "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
-
-        fi
+	fi
 
 	sleep 1
 
-        echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
-	if [ -f "$HOME/../usr/etc/motd" ]
-	then
-
+	echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
+	if [ -f "$HOME/../usr/etc/motd" ]; then
 		mv "$HOME/../usr/etc/motd" "$HOME/../usr/etc/motd.$(date).bak"
 
 	fi
+
 	chsh -s zsh
 	termux-reload-settings
 
@@ -331,21 +286,19 @@ kali.dark.2020.4()
 
 	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
 	sleep 5
-	#Executing main menu function:
+	# Executing main menu function:
 	menu
 
 }
 
-#Kali Dark 2020.3 scheme function:
-kali.dark.2020.3()
-{
-
+# Kali Dark 2020.3 scheme function:
+kali.dark.2020.3() {
 	apply
 
 	sleep 1
 
-	#Applying changes:
-	#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	# Applying changes:
+	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
 	sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
@@ -355,43 +308,36 @@ kali.dark.2020.3()
 
 	sleep 1
 
-        echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be 'kali').\nE.g. sysb1n, pepo, sidney, etc.\e[0m"
-        read -p ">>> " nick
-        if [ "$nick" != "" ]
-	then
-
-		sed -i "s/nick/$nick/" "$HOME/../usr/etc/bash.bashrc"
+	echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be '$(whoami)').\nE.g. kali, sysb1n, sidney, etc.\e[0m"
+	read -p ">>> " nick
+	if [ "$nick" != "" ]; then
+		sed -i "s/user/$nick/" "$HOME/../usr/etc/bash.bashrc"
 
 	else
-
-		sed -i "s/nick/kali/" "$HOME/../usr/etc/bash.bashrc"
+		sed -i "s/user/$(whoami)/" "$HOME/../usr/etc/bash.bashrc"
 
 	fi
 
 	sleep 1
 
-        echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'kali').\nE.g. redmi-6-pro, android, termux, etc.\e[0m"
-        read -p ">>> " host
-	if [ "$host" != "" ]
-        then
-
+	echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'localhost').\nE.g. kali, android, redmi-6-pro, etc.\e[0m"
+	read -p ">>> " host
+	if [ "$host" != "" ]; then
 		sed -i "s/host/$host/" "$HOME/../usr/etc/bash.bashrc"
 
-        else
+	else
+		sed -i "s/host/localhost/" "$HOME/../usr/etc/bash.bashrc"
 
-		sed -i "s/host/kali/" "$HOME/../usr/etc/bash.bashrc"
-
-        fi
+	fi
 
 	sleep 1
 
-        echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
-	if [ -f "$HOME/../usr/etc/motd" ]
-	then
-
+	echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
+	if [ -f "$HOME/../usr/etc/motd" ]; then
 		mv "$HOME/../usr/etc/motd" "$HOME/../usr/etc/motd.$(date).bak"
 
 	fi
+
 	chsh -s bash
 	termux-reload-settings
 
@@ -399,21 +345,19 @@ kali.dark.2020.3()
 
 	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
 	sleep 5
-	#Executing main menu function:
+	# Executing main menu function:
 	menu
 
 }
 
-#Kali Dark 2019.4 scheme function:
-kali.dark.2019.4()
-{
-
+# Kali Dark 2019.4 scheme function:
+kali.dark.2019.4() {
 	apply
 
 	sleep 1
 
-	#Applying changes:
-	#The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	# Applying changes:
+	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
 	sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
@@ -423,43 +367,36 @@ kali.dark.2019.4()
 
 	sleep 1
 
-        echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be 'kali').\nE.g. sysb1n, pepo, sidney, etc.\e[0m"
-        read -p ">>> " nick
-        if [ "$nick" != "" ]
-	then
-
-		sed -i "s/nick/$nick/" "$HOME/../usr/etc/bash.bashrc"
+	echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be '$(whoami)').\nE.g. kali, sysb1n, sidney, etc.\e[0m"
+	read -p ">>> " nick
+	if [ "$nick" != "" ]; then
+		sed -i "s/user/$nick/" "$HOME/../usr/etc/bash.bashrc"
 
 	else
-
-		sed -i "s/nick/kali/" "$HOME/../usr/etc/bash.bashrc"
+		sed -i "s/user/$(whoami)/" "$HOME/../usr/etc/bash.bashrc"
 
 	fi
 
 	sleep 1
 
-        echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'kali').\nE.g. redmi-6-pro, android, termux, etc.\e[0m"
-        read -p ">>> " host
-	if [ "$host" != "" ]
-        then
-
+	echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'localhost').\nE.g. kali, android, redmi-6-pro, etc.\e[0m"
+	read -p ">>> " host
+	if [ "$host" != "" ]; then
 		sed -i "s/host/$host/" "$HOME/../usr/etc/bash.bashrc"
 
-        else
+	else
+		sed -i "s/host/localhost/" "$HOME/../usr/etc/bash.bashrc"
 
-		sed -i "s/host/kali/" "$HOME/../usr/etc/bash.bashrc"
-
-        fi
+	fi
 
 	sleep 1
 
-        echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
-	if [ -f "$HOME/../usr/etc/motd" ]
-	then
-
+	echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
+	if [ -f "$HOME/../usr/etc/motd" ]; then
 		mv "$HOME/../usr/etc/motd" "$HOME/../usr/etc/motd.$(date).bak"
 
 	fi
+
 	chsh -s bash
 	termux-reload-settings
 
@@ -467,21 +404,79 @@ kali.dark.2019.4()
 
 	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
 	sleep 5
-	#Executing main menu function:
+	# Executing main menu function:
 	menu
 
 }
 
-#Option select function:
-option()
-{
+# Kali Custom 1.0 scheme function:
+kali.custom.1.0() {
+	apply
 
+	sleep 1
+
+	# Applying changes:
+	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	sed -i '1iZSH_THEME="kali.custom.1.0"' "$HOME/.zshrc"
+	cp -rf .ks4t-core/colors/kali.custom.1.0.colors "$(dirname $0)/colors.properties"
+	cp -rf .ks4t-core/fonts/monospace/dejavusansmono.ttf "$(dirname $0)/font.ttf"
+
+	mv "$HOME/../usr/etc/bash.bashrc" "$HOME/../usr/etc/bash.bashrc.$(date).bak"
+	cp .ks4t-core/bash/kali.dark.2019.4.bashrc "$HOME/../usr/etc/bash.bashrc"
+
+	sleep 1
+
+	echo -e "    \e[1;33m[*] Type your nick/name (username). (If you leave it blank, it will be '$(whoami)').\nE.g. kali, sysb1n, sidney, etc.\e[0m"
+	read -p ">>> " nick
+	if [ "$nick" != "" ]; then
+		sed -i "s/user/$nick/" "$HOME/../usr/etc/bash.bashrc"
+
+	else
+		sed -i "s/user/$(whoami)/" "$HOME/../usr/etc/bash.bashrc"
+
+	fi
+
+	sleep 1
+
+	echo -e "\n    \e[1;33m[*] Type your device name (host device). (If you leave it blank, it will be 'localhost').\nE.g. kali, android, redmi-6-pro, etc.\e[0m"
+	read -p ">>> " host
+	if [ "$host" != "" ]; then
+		sed -i "s/host/$host/" "$HOME/../usr/etc/bash.bashrc"
+
+	else
+		sed -i "s/host/localhost/" "$HOME/../usr/etc/bash.bashrc"
+
+	fi
+
+	sleep 1
+
+	echo -e "\n    \e[1;33m[*] Applying changes. This can take some time... \e[0m\n"
+	if [ -f "$HOME/../usr/etc/motd" ]; then
+		mv "$HOME/../usr/etc/motd" "$HOME/../usr/etc/motd.$(date).bak"
+
+	fi
+
+	chsh -s bash
+	termux-reload-settings
+
+	sleep 1
+
+	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
+	sleep 5
+	# Executing main menu function:
+	menu
+
+}
+
+# Option select function:
+option() {
 	read -p ">>> " schm
 
 	case $schm in
 		1|01) kali.dark.2020.4;;
 		2|02) kali.dark.2020.3;;
 		3|03) kali.dark.2019.4;;
+		4|04) kali.custom.1.0;;
 		99) reset;;
 		0|00) echo -e "\n    \e[1;33m[*] Exiting in 3 seconds...\e[0m"; sleep 3; clear; exit;;
 		*) echo -e "\e[1;31m'$schm' is an invalid option!\e[0m"; option;;
@@ -490,40 +485,35 @@ option()
 
 }
 
-#Main menu function:
-menu()
-{
-
-	#Executing banner function:
+# Main menu function:
+menu() {
+	# Executing banner function:
 	banner
 
-	#Main menu:
+	# Main menu:
 	echo -e "\e[1;32m·Select one option of schemes below: \e[0m\n"
 	echo -e "    \e[1;34m[01] Kali Dark 2020.4\e[0m"
 	echo -e "    \e[1;34m[02] Kali Dark 2020.3\e[0m"
 	echo -e "    \e[1;34m[03] Kali Dark 2019.4\e[0m"
+	echo -e "    \e[1;34m[04] Kali Custom 1.0\e[0m"
 
 	echo -e "\n    \e[1;34m[99] Reset Termux scheme\e[0m"
 	echo -e "    \e[1;34m[00] Exit script\e[0m\n"
 
-	#Executing option function:
+	# Executing option function:
 	option
 
 }
 
-#Checkup function:
-checkup()
-{
-
-	#Executing banner function:
+# Checkup function:
+checkup() {
+	# Executing banner function:
 	banner
 
 	sleep 1
 
-	#Checking if git is installed:
-	if [ -x "$(command -v git)" ]
-	then
-
+	# Checking if git is installed:
+	if [ -x "$(command -v git)" ]; then
 		echo -e "    \e[1;32m[+] Git is installed.\e[0m\n"
 
 	else
@@ -531,13 +521,10 @@ checkup()
 		apt install -q git -y
 		sleep 1
 
-		if [ -x "$(command -v git)" ]
-		then
-
+		if [ -x "$(command -v git)" ]; then
 			echo -e "    \e[1;32m[+] Git installed.\e[0m\n"
 
 		else
-
 			echo -e "    \e[1;31m[!] Git can't be installed. Run 'apt update -y && apt upgrade -y' before use this script.\n\n    Exiting...\e[0m"
 			sleep 3
 			exit
@@ -548,50 +535,43 @@ checkup()
 
 	sleep 1
 
-	#Checking if core is installed
+	# Checking if core is installed
 	cre=.ks4t-core/
-	if [ -d "$cre" ]
-	then
-
+	if [ -d "$cre" ]; then
 		echo -e "    \e[1;32m[+] Core is installed.\e[0m\n"
 
 	else
-
 		echo -e "    \e[1;31m[!] Core isn't installed. Installing it...\e[0m"
 
-                git clone https://github.com/sidneypepo/kalischemes4termux -q
-                mv kalischemes4termux/.ks4t-core .ks4t-core
+		git clone https://github.com/sidneypepo/kalischemes4termux -q
+		mv kalischemes4termux/.ks4t-core .ks4t-core
 		rm -rf kalischemes4termux/
 		sleep 1
 
-		if [ -d "$cre" ]
-                then
+		if [ -d "$cre" ]; then
+			echo -e "    \e[1;32m[+] Core installed.\e[0m\n"
 
-                        echo -e "    \e[1;32m[+] Core installed.\e[0m\n"
+		else
 
-                else
+			echo -e "    \e[1;31m[!] Core can't be installed. Exiting...\e[0m"
+			sleep 3
+			clear
+			exit
 
-                        echo -e "    \e[1;31m[!] Core can't be installed. Exiting...\e[0m"
-                        sleep 3
-                        clear
-                        exit
-
-                fi
+		fi
 
 	fi
 
 }
 
-#Executing banner function:
+# Executing banner function:
 banner
-#Executing checkup function:
+# Executing checkup function:
 checkup
-
 sleep 3
-
 clear
-#Executing banner function:
+# Executing banner function:
 banner
-#Executing main menu function:
+# Executing main menu function:
 menu
-#End of script :p
+# End of script :p
