@@ -242,8 +242,8 @@ kali.dark.2020.4() {
 	# Applying changes:
 	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
 	sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.zshrc"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
-	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
+	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
+	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/../usr/bin/font.ttf"
 	
 	cp .ks4t-core/zsh/kali.dark.2020.4.zsh-theme "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
@@ -300,8 +300,8 @@ kali.dark.2020.3() {
 	# Applying changes:
 	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
 	sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
-	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
+	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
+	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/../usr/bin/font.ttf"
 
 	mv "$HOME/../usr/etc/bash.bashrc" "$HOME/../usr/etc/bash.bashrc.$(date).bak"
 	cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/../usr/etc/bash.bashrc"
@@ -359,8 +359,8 @@ kali.dark.2019.4() {
 	# Applying changes:
 	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
 	sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$(dirname $0)/colors.properties"
-	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$(dirname $0)/font.ttf"
+	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
+	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/../usr/bin/font.ttf"
 
 	mv "$HOME/../usr/etc/bash.bashrc" "$HOME/../usr/etc/bash.bashrc.$(date).bak"
 	cp .ks4t-core/bash/kali.dark.2019.4.bashrc "$HOME/../usr/etc/bash.bashrc"
@@ -418,8 +418,8 @@ kali.custom.1.0() {
 	# Applying changes:
 	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
 	sed -i '1iZSH_THEME="kali.custom.1.0"' "$HOME/.zshrc"
-	cp -rf .ks4t-core/colors/kali.custom.1.0.colors "$(dirname $0)/colors.properties"
-	cp -rf .ks4t-core/fonts/monospace/dejavusansmono.ttf "$(dirname $0)/font.ttf"
+	cp -rf .ks4t-core/colors/kali.custom.1.0.colors "$HOME/../usr/bin/colors.properties"
+	cp -rf .ks4t-core/fonts/monospace/dejavusansmono.ttf "$HOME/../usr/bin/font.ttf"
 
 	mv "$HOME/../usr/etc/bash.bashrc" "$HOME/../usr/etc/bash.bashrc.$(date).bak"
 	cp .ks4t-core/bash/kali.dark.2019.4.bashrc "$HOME/../usr/etc/bash.bashrc"
