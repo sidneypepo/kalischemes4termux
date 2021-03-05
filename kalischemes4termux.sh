@@ -156,7 +156,7 @@ apply() {
 	if [ -d "$zshi" ]; then
 		echo -e "    \e[1;32m[+] Zsh-syntax-highlighting is installed.\e[0m\n"
 		if [ -d "$HOME/.zsh-syntax-highlighting" ]; then
-						mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
+			mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
 
 		fi
 
