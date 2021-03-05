@@ -232,43 +232,23 @@ apply() {
 
 	# Checking if dependencies are at sudo home
 	if [ $rooted == 1 ]; then
-		if [ -d "$HOME/.suroot/.termux" ]; then
-			mv "$HOME/.suroot/.termux" "$HOME/.suroot/.termux.$(date).bak"
+		sudo mv "$HOME/.suroot/.termux" "$HOME/.suroot/.termux.$(date).bak" 2> /dev/null
+		sudo mv "$HOME/.suroot/.zshrc" "$HOME/.suroot/.zshrc.$(date).bak" 2> /dev/null
+		sudo mv "$HOME/.suroot/.oh-my-zsh" "$HOME/.suroot/.oh-my-zsh.$(date).bak" 2> /dev/null
+		sudo cp -r ".oh-my-zsh" "$HOME/.suroot/.oh-my-zsh"
+		sudo cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.suroot/.zshrc"
+		sudo sed -i '/^ZSH_THEME/d' "$HOME/.suroot/.zshrc"
 
-		fi
+		sudo mv "$HOME/.suroot/.zsh-syntax-highlighting" "$HOME/.suroot/.zsh-syntax-highlighting.$(date).bak" 2> /dev/null
 
-		# ==========
-		
-		if [ -f "$HOME/.suroot/.zshrc" ]; then
-			mv "$HOME/.suroot/.zshrc" "$HOME/.suroot/.zshrc.$(date).bak"
+		sudo cp -r ".zsh-syntax-highlighting" "$HOME/.suroot/.zsh-syntax-highlighting"
+		sudo echo "source $HOME/.suroot/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.suroot/.zshrc
 
-		fi
-		if [ -d "$HOME/.suroot/.oh-my-zsh" ]; then
-			mv "$HOME/.suroot/.oh-my-zsh" "$HOME/.suroot/.oh-my-zsh.$(date).bak"
+		sudo mv "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak" 2> /dev/null
 
-		fi
-		cp -r ".oh-my-zsh" "$HOME/.suroot/.oh-my-zsh"
-		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.suroot/.zshrc"
-		sed -i '/^ZSH_THEME/d' "$HOME/.suroot/.zshrc"
-
-		# ==========
-
-		if [ -d "$HOME/.suroot/.zsh-syntax-highlighting" ]; then
-			mv "$HOME/.suroot/.zsh-syntax-highlighting" "$HOME/.suroot/.zsh-syntax-highlighting.$(date).bak"
-
-		fi
-		cp -r ".zsh-syntax-highlighting" "$HOME/.suroot/.zsh-syntax-highlighting"
-		echo "source $HOME/.suroot/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.suroot/.zshrc
-
-		# ==========
-
-		if [ -d "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-			mv "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
-
-		fi
-		cp -r ".zsh-autosuggestions" "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-		sed -i 's/git/zsh-autosuggestions/' $HOME/.suroot/.zshrc
-		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.suroot/.zshrc
+		sudo cp -r ".zsh-autosuggestions" "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+		sudo sed -i 's/git/zsh-autosuggestions/' $HOME/.suroot/.zshrc
+		sudo echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.suroot/.zshrc
 
 	fi
 
@@ -321,16 +301,16 @@ kali.dark.2020.4() {
 	fi
 
 	if [ $rooted == 1 ]; then
-		sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.suroot/.zshrc"
-		cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.suroot/.termux/colors.properties"
-		cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.suroot/.termux/font.ttf"
-		cp .ks4t-core/zsh/kali.dark.2020.4.zsh-theme "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
-		sed -i "s/user/root/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+		sudo sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.suroot/.zshrc"
+		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.suroot/.termux/colors.properties"
+		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.suroot/.termux/font.ttf"
+		sudo cp .ks4t-core/zsh/kali.dark.2020.4.zsh-theme "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+		sudo sed -i "s/user/root/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 		if [ "$host" != "" ]; then
-			sed -i "s/host/$host/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+			sudo sed -i "s/host/$host/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
 		else
-			sed -i "s/host/localhost/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+			sudo sed -i "s/host/localhost/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
 		fi
 		sudo chsh -s zsh
@@ -401,17 +381,17 @@ kali.dark.2020.3() {
 	fi
 
 	if [ $rooted == 1 ]; then
-		sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
-		cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
-		cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
-		mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
-		cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
-		sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
+		sudo sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
+		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
+		sudo mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		sudo cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
+		sudo sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
 		if [ "$host" != "" ]; then
-			sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
+			sudo sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
 
 		else
-			sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
+			sudo sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
 
 		fi
 		sudo chsh -s bash
@@ -482,17 +462,17 @@ kali.dark.2019.4() {
 	fi
 
 	if [ $rooted == 1 ]; then
-		sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
-		cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
-		cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
-		mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
-		cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
-		sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
+		sudo sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
+		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
+		sudo mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		sudo cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
+		sudo sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
 		if [ "$host" != "" ]; then
-			sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
+			sudo sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
 
 		else
-			sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
+			sudo sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
 
 		fi
 		sudo chsh -s bash
@@ -563,17 +543,17 @@ kali.custom.1.0() {
 	fi
 
 	if [ $rooted == 1 ]; then
-		sed -i '1iZSH_THEME="kali.custom.1.0"' "$HOME/.zshrc"
-		cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
-		cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
-		mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
-		cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
-		sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
+		sudo sed -i '1iZSH_THEME="kali.custom.1.0"' "$HOME/.zshrc"
+		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
+		sudo mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		sudo cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
+		sudo sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
 		if [ "$host" != "" ]; then
-			sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
+			sudo sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
 
 		else
-			sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
+			sudo sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
 
 		fi
 		sudo chsh -s bash
