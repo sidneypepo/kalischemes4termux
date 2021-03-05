@@ -41,6 +41,12 @@ reset() {
 	rm -rf "$HOME/../usr/bin/colors.properties" "$HOME/../usr/bin/font.ttf"
 	rm -rf "$HOME/.termux" "$HOME/.oh-my-zsh" "$HOME/.zshrc" "$HOME/.zsh-syntax-highlighting" "$HOME/../usr/etc/bash.bashrc"
 	cp .ks4t-core/bash.bashrc.bak "$HOME/../usr/etc/bash.bashrc"
+	if [ $rooted == 1 ]; then
+		sudo cp .ks4t-core/bash.bashrc.bak "$HOME/.suroot/.bashrc"
+		sudo rm -rf "$HOME/.suroot/.termux" "$HOME/.suroot/.oh-my-zsh" "$HOME/.suroot/.zshrc" "$HOME/.suroot/.zsh-syntax-highlighting" "$HOME/.suroot/.bashrc"
+		sudo chsh -s bash
+
+	fi
 	chsh -s bash
 	termux-reload-settings
 	sleep 1
@@ -242,13 +248,13 @@ apply() {
 		sudo mv "$HOME/.suroot/.zsh-syntax-highlighting" "$HOME/.suroot/.zsh-syntax-highlighting.$(date).bak" 2> /dev/null
 
 		sudo cp -r ".zsh-syntax-highlighting" "$HOME/.suroot/.zsh-syntax-highlighting"
-		sudo echo "source $HOME/.suroot/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.suroot/.zshrc
+		sudo bash -c "echo \"source $HOME/.suroot/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\" >> $HOME/.suroot/.zshrc"
 
 		sudo mv "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak" 2> /dev/null
 
 		sudo cp -r ".zsh-autosuggestions" "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 		sudo sed -i 's/git/zsh-autosuggestions/' $HOME/.suroot/.zshrc
-		sudo echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.suroot/.zshrc
+		sudo bash -c "echo \"ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'\" >> $HOME/.suroot/.zshrc"
 
 	fi
 
