@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Credits:
+# Credits
 #  _                              _    __
 # | |                            | |  /  |
 # | | _  _   _     ___ _   _  ___| | /_/ |____
@@ -9,11 +9,11 @@
 # |____/ \__  |  (___/ \__  (___/|____/|_|_| |_|
 #       (____/        (____/
 
-# Banner function:
+# Banner function
 banner() {
 	clear
 
-	# Script banner:
+	# Script banner
 	echo -e " \e[1;34m_     _       _  _    \e[1;35m______       _                            "
 	echo -e "\e[1;34m| |   | |     | |(_)  \e[1;35m/ _____)     | |                           "
 	echo -e "\e[1;34m| |___| |_____| | _  \e[1;35m( (____   ____| |__  _____ ____  _____  ___ "
@@ -30,9 +30,9 @@ banner() {
 
 }
 
-# Reset Termux scheme function:
+# Reset Termux scheme function
 reset() {
-	# Executing banner function:
+	# Executing banner function
 	banner
 
 	sleep 1
@@ -45,29 +45,29 @@ reset() {
 	termux-reload-settings
 	sleep 1
 
-	# Executing banner function:
+	# Executing banner function
 	banner
 	echo -e "    \e[1;32m[+] Termux scheme successfully reseted.\e[0m\n"
 	sleep 1
 	echo -e "    \e[1;33m[*] Restart your Termux to the changes run properly.\e[0m\n"
 	sleep 5
-	# Executing main menu function:
+	# Executing main menu function
 	menu
 
 }
 
+# Applying base configuration
 apply() {
-	# Executing banner function:
+	# Executing banner function
 	banner
 
-	# Checking if core is in home:
+	# Checking if core is at home
 	if [ -d "$HOME/.termux" ]; then
 		mv "$HOME/.termux" "$HOME/.termux.$(date).bak"
 
 	fi
 
 	cp -r ".ks4t-core" "$HOME/.termux"
-	
 	sleep 1
 
 	# Checking if zsh is installed
@@ -93,12 +93,12 @@ apply() {
 
 	sleep 1
 
-	# Checking if oh-my-zsh is installed:
+	# Checking if oh-my-zsh is installed
 	omz=.oh-my-zsh/
 	if [ -d "$omz" ]; then
 		echo -e "    \e[1;32m[+] Oh-my-zsh is installed.\e[0m\n"
 
-		# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh:
+		# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh
 		if [ -f "$HOME/.zshrc" ]; then
 			mv "$HOME/.zshrc" "$HOME/.zshrc.$(date).bak"
 
@@ -115,9 +115,8 @@ apply() {
 		sed -i '/^ZSH_THEME/d' "$HOME/.zshrc"
 
 	else
-
 		echo -e "    \e[1;31m[!] Oh-my-zsh isn't installed. Installing it...\e[0m"
-		# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh:
+		# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/install.sh
 		git clone https://github.com/robbyrussell/oh-my-zsh -q
 		mv oh-my-zsh/ .oh-my-zsh/
 		if [ -f "$HOME/.zshrc" ]; then
@@ -151,7 +150,7 @@ apply() {
 
 	sleep 1
 
-	# Checking if zsh-syntax-highlighting is installed:
+	# Checking if zsh-syntax-highlighting is installed
 	zshi=.zsh-syntax-highlighting/
 	if [ -d "$zshi" ]; then
 		echo -e "    \e[1;32m[+] Zsh-syntax-highlighting is installed.\e[0m\n"
@@ -171,7 +170,7 @@ apply() {
 			mv "$HOME/.zsh-syntax-highlighting" "$HOME/.zsh-syntax-highlighting.$(date).bak"
 
 		fi
-		
+
 		cp -r .zsh-syntax-highlighting/ "$HOME/.zsh-syntax-highlighting/"
 		echo "source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.zshrc
 		sleep 1
@@ -188,10 +187,10 @@ apply() {
 		fi
 
 	fi
-	
+
 	sleep 1
-	
-	# Checking if zsh-autosuggestions is installed:
+
+	# Checking if zsh-autosuggestions is installed
 	zsha=.zsh-autosuggestions/
 	if [ -d "$zsha" ]; then
 		echo -e "    \e[1;32m[+] Zsh-autosuggestions is installed.\e[0m\n"
@@ -231,22 +230,62 @@ apply() {
 
 	fi
 
+	# Checking if dependencies are at sudo home
+	if [ $rooted == 1 ]; then
+		if [ -d "$HOME/.suroot/.termux" ]; then
+			mv "$HOME/.suroot/.termux" "$HOME/.suroot/.termux.$(date).bak"
+
+		fi
+
+		# ==========
+		
+		if [ -f "$HOME/.suroot/.zshrc" ]; then
+			mv "$HOME/.suroot/.zshrc" "$HOME/.suroot/.zshrc.$(date).bak"
+
+		fi
+		if [ -d "$HOME/.suroot/.oh-my-zsh" ]; then
+			mv "$HOME/.suroot/.oh-my-zsh" "$HOME/.suroot/.oh-my-zsh.$(date).bak"
+
+		fi
+		cp -r ".oh-my-zsh" "$HOME/.suroot/.oh-my-zsh"
+		cp ".oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.suroot/.zshrc"
+		sed -i '/^ZSH_THEME/d' "$HOME/.suroot/.zshrc"
+
+		# ==========
+
+		if [ -d "$HOME/.suroot/.zsh-syntax-highlighting" ]; then
+			mv "$HOME/.suroot/.zsh-syntax-highlighting" "$HOME/.suroot/.zsh-syntax-highlighting.$(date).bak"
+
+		fi
+		cp -r ".zsh-syntax-highlighting" "$HOME/.suroot/.zsh-syntax-highlighting"
+		echo "source $HOME/.suroot/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.suroot/.zshrc
+
+		# ==========
+
+		if [ -d "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+			mv "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions" "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions.$(date).bak"
+
+		fi
+		cp -r ".zsh-autosuggestions" "$HOME/.suroot/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+		sed -i 's/git/zsh-autosuggestions/' $HOME/.suroot/.zshrc
+		echo "ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'" >> $HOME/.suroot/.zshrc
+
+	fi
+
 }
 
-#Kali Dark 2020.4 scheme function:
+#Kali Dark 2020.4 scheme function
 kali.dark.2020.4() {
 	apply
 
-	sleep 1
-
-	# Applying changes:
-	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	# Applying changes
+	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh
 	sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.zshrc"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/../usr/bin/font.ttf"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
-	
+
 	cp .ks4t-core/zsh/kali.dark.2020.4.zsh-theme "$HOME/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 
 	sleep 1
@@ -281,6 +320,25 @@ kali.dark.2020.4() {
 
 	fi
 
+	if [ $rooted == 1 ]; then
+		sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.suroot/.zshrc"
+		cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.suroot/.termux/colors.properties"
+		cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.suroot/.termux/font.ttf"
+		cp .ks4t-core/zsh/kali.dark.2020.4.zsh-theme "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+		sed -i "s/user/root/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+		if [ "$host" != "" ]; then
+			sed -i "s/host/$host/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+
+		else
+			sed -i "s/host/localhost/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
+
+		fi
+		sudo chsh -s zsh
+
+		rooted=0
+
+	fi
+
 	chsh -s zsh
 	termux-reload-settings
 
@@ -288,19 +346,19 @@ kali.dark.2020.4() {
 
 	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
 	sleep 5
-	# Executing main menu function:
+	# Executing main menu function
 	menu
 
 }
 
-# Kali Dark 2020.3 scheme function:
+# Kali Dark 2020.3 scheme function
 kali.dark.2020.3() {
 	apply
 
 	sleep 1
 
-	# Applying changes:
-	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	# Applying changes
+	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh
 	sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
@@ -342,6 +400,26 @@ kali.dark.2020.3() {
 
 	fi
 
+	if [ $rooted == 1 ]; then
+		sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
+		cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
+		mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
+		sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
+		if [ "$host" != "" ]; then
+			sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
+
+		else
+			sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
+
+		fi
+		sudo chsh -s bash
+
+		rooted=0
+
+	fi
+
 	chsh -s bash
 	termux-reload-settings
 
@@ -349,19 +427,19 @@ kali.dark.2020.3() {
 
 	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
 	sleep 5
-	# Executing main menu function:
+	# Executing main menu function
 	menu
 
 }
 
-# Kali Dark 2019.4 scheme function:
+# Kali Dark 2019.4 scheme function
 kali.dark.2019.4() {
 	apply
 
 	sleep 1
 
-	# Applying changes:
-	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	# Applying changes
+	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh
 	sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
 	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
@@ -403,6 +481,26 @@ kali.dark.2019.4() {
 
 	fi
 
+	if [ $rooted == 1 ]; then
+		sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
+		cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
+		mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
+		sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
+		if [ "$host" != "" ]; then
+			sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
+
+		else
+			sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
+
+		fi
+		sudo chsh -s bash
+
+		rooted=0
+
+	fi
+
 	chsh -s bash
 	termux-reload-settings
 
@@ -410,19 +508,19 @@ kali.dark.2019.4() {
 
 	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
 	sleep 5
-	# Executing main menu function:
+	# Executing main menu function
 	menu
 
 }
 
-# Kali Custom 1.0 scheme function:
+# Kali Custom 1.0 scheme function
 kali.custom.1.0() {
 	apply
 
 	sleep 1
 
-	# Applying changes:
-	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh:
+	# Applying changes
+	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh
 	sed -i '1iZSH_THEME="kali.custom.1.0"' "$HOME/.zshrc"
 	cp -rf .ks4t-core/colors/kali.custom.1.0.colors "$HOME/../usr/bin/colors.properties"
 	cp -rf .ks4t-core/colors/kali.custom.1.0.colors "$HOME/.termux/colors.properties"
@@ -464,6 +562,26 @@ kali.custom.1.0() {
 
 	fi
 
+	if [ $rooted == 1 ]; then
+		sed -i '1iZSH_THEME="kali.custom.1.0"' "$HOME/.zshrc"
+		cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
+		mv "$HOME/.suroot/bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
+		cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
+		sed -i "s/user/root/" "$HOME/.suroot/.bashrc"
+		if [ "$host" != "" ]; then
+			sed -i "s/host/$host/" "$HOME/.suroot/.bashrc"
+
+		else
+			sed -i "s/host/localhost/" "$HOME/.suroot/.bashrc"
+
+		fi
+		sudo chsh -s bash
+
+		rooted=0
+
+	fi
+
 	chsh -s bash
 	termux-reload-settings
 
@@ -471,56 +589,57 @@ kali.custom.1.0() {
 
 	echo -e "    \e[1;33m[*] Changes applied. Restart your Termux to run them properly.\e[0m\n"
 	sleep 5
-	# Executing main menu function:
+	# Executing main menu function
 	menu
 
 }
 
-# Option select function:
+# Option select function
 option() {
 	read -p ">>> " schm
 
 	case $schm in
-		1|01) kali.dark.2020.4;;
-		2|02) kali.dark.2020.3;;
-		3|03) kali.dark.2019.4;;
-		4|04) kali.custom.1.0;;
+		1|01) kali.custom.1.0;;
+		2|02) kali.dark.2019.4;;
+		3|03) kali.dark.2020.3;;
+		4|04) kali.dark.2020.4;;
+		
 		99) reset;;
-		0|00) echo -e "\n    \e[1;33m[*] Exiting in 3 seconds...\e[0m"; sleep 3; clear; exit;;
+		0|00) exit;;
 		*) echo -e "\e[1;31m'$schm' is an invalid option!\e[0m"; option;;
 
 	esac
 
 }
 
-# Main menu function:
+# Main menu function
 menu() {
-	# Executing banner function:
+	# Executing banner function
 	banner
 
-	# Main menu:
+	# Main menu
 	echo -e "\e[1;32m·Select one option of schemes below: \e[0m\n"
-	echo -e "    \e[1;34m[01] Kali Dark 2020.4\e[0m"
-	echo -e "    \e[1;34m[02] Kali Dark 2020.3\e[0m"
-	echo -e "    \e[1;34m[03] Kali Dark 2019.4\e[0m"
-	echo -e "    \e[1;34m[04] Kali Custom 1.0\e[0m"
+	echo -e "    \e[1;34m[01] Kali Custom 1.0\e[0m"
+	echo -e "    \e[1;34m[02] Kali Dark 2019.4\e[0m"
+	echo -e "    \e[1;34m[03] Kali Dark 2020.3\e[0m"
+	echo -e "    \e[1;34m[04] Kali Dark 2020.4\e[0m"
 
 	echo -e "\n    \e[1;34m[99] Reset Termux scheme\e[0m"
 	echo -e "    \e[1;34m[00] Exit script\e[0m\n"
 
-	# Executing option function:
+	# Executing option function
 	option
 
 }
 
-# Checkup function:
+# Checkup function
 checkup() {
-	# Executing banner function:
+	# Executing banner function
 	banner
 
 	sleep 1
 
-	# Checking if git is installed:
+	# Checking if git is installed
 	if [ -x "$(command -v git)" ]; then
 		echo -e "    \e[1;32m[+] Git is installed.\e[0m\n"
 
@@ -570,16 +689,30 @@ checkup() {
 
 	fi
 
+	sleep 1
+
+	# Checking if device is rooted
+	if [ -f "$HOME/../usr/bin/sudo" ]; then
+		if [ -d "$HOME/.suroot" ]; then
+			echo -e "    \e[1;32m[+] Termux is rooted.\e[0m\n"
+			rooted=1
+
+		fi
+
+	fi
+
 }
 
-# Executing banner function:
+# Stores if Termux have 'sudo'
+rooted=0
+# Executing banner function
 banner
-# Executing checkup function:
+# Executing checkup function
 checkup
 sleep 3
 clear
-# Executing banner function:
+# Executing banner function
 banner
-# Executing main menu function:
+# Executing main menu function
 menu
 # End of script :p

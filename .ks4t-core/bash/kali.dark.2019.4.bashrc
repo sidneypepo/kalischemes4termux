@@ -6,4 +6,6 @@ if [ -x /data/data/com.termux/files/usr/libexec/termux/command-not-found ]; then
 
 fi
 
-PS1="\[\033[1;31m\]user@host\[\e[0m\]:\[\033[1;34m\]\w\[\e[0m\]\$ "
+# PS1="\[\033[1;31m\]usr@hst\[\e[0m\]:\[\033[1;34m\]\w\[\e[0m\]\$ "
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]user@host\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
