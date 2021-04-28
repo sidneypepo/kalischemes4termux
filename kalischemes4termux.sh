@@ -267,8 +267,8 @@ kali.dark.2020.4() {
 	# Applying changes
 	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh
 	sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.zshrc"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+	cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/../usr/bin/colors.properties"
+	cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/.termux/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/../usr/bin/font.ttf"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
 
@@ -308,7 +308,7 @@ kali.dark.2020.4() {
 
 	if [ $rooted == 1 ]; then
 		sudo sed -i '1iZSH_THEME="kali.dark.2020.4"' "$HOME/.suroot/.zshrc"
-		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		sudo cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/.termux/colors.properties"
 		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
 		sudo cp .ks4t-core/zsh/kali.dark.2020.4.zsh-theme "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
 		sudo sed -i "s/user/root/" "$HOME/.suroot/.oh-my-zsh/themes/kali.dark.2020.4.zsh-theme"
@@ -344,8 +344,8 @@ kali.dark.2020.3() {
 	# Applying changes
 	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh
 	sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+	cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/../usr/bin/colors.properties"
+	cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/.termux/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/../usr/bin/font.ttf"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
 
@@ -386,7 +386,7 @@ kali.dark.2020.3() {
 
 	if [ $rooted == 1 ]; then
 		sudo sed -i '1iZSH_THEME="kali.dark.2020.3"' "$HOME/.zshrc"
-		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		sudo cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/.termux/colors.properties"
 		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
 		sudo mv "$HOME/.suroot/.bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
 		sudo cp .ks4t-core/bash/kali.dark.2020.3.bashrc "$HOME/.suroot/.bashrc"
@@ -422,8 +422,8 @@ kali.dark.2019.4() {
 	# Applying changes
 	# The following code is from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/colors.sh and from https://github.com/Cabbagec/termux-ohmyzsh/blob/master/.termux/fonts.sh
 	sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/../usr/bin/colors.properties"
-	cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+	cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/../usr/bin/colors.properties"
+	cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/.termux/colors.properties"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/../usr/bin/font.ttf"
 	cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
 
@@ -464,7 +464,7 @@ kali.dark.2019.4() {
 
 	if [ $rooted == 1 ]; then
 		sudo sed -i '1iZSH_THEME="kali.dark.2019.4"' "$HOME/.zshrc"
-		sudo cp -rf .ks4t-core/colors/kali.dark.2019.4.colors "$HOME/.termux/colors.properties"
+		sudo cp -rf .ks4t-core/colors/flat-remix.colors "$HOME/.termux/colors.properties"
 		sudo cp -rf .ks4t-core/fonts/firacode/firacode.ttf "$HOME/.termux/font.ttf"
 		sudo mv "$HOME/.suroot/.bashrc" "$HOME/.suroot/.bashrc.$(date).bak"
 		sudo cp .ks4t-core/bash/kali.dark.2019.4.bashrc "$HOME/.suroot/.bashrc"
